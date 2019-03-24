@@ -126,7 +126,7 @@ __If you’re still unsure of which to use, consider which audit question is mos
 
 - For example, if an IAM policy grants access to an object, the S3 bucket policies denies access to that object, and there is no S3 ACL, then access will be denied. Similarly, if no method specifies an ALLOW, then the request will be denied by default. Only if no method specifies a DENY and one or more methods specify an ALLOW will the request be allowed.
 
-![Authorization process](AuthZDiagram.png)
+![Authorization process](images/AuthZDiagram.png)
 
 ## Resource
 ---
