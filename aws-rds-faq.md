@@ -155,10 +155,10 @@ Restored DNS: `restored.eu-west-1.rds.amazonaws.com`
 
 Read replicas allow you to have a read-only copy of your production database. This is achieved by using asynchronous replication from the primay RDS instance to the Read Replica. You use Read Replicas primarily for very read-heavy database workloads.
 
-- Used for scaling, not disaster control!
+- Used for scaling out, not disaster control!
 - Must have auto backups turned on in order to deploy a Read Replica
 - You can have up to 5 Read Replica copies of any database.
-- You can have Read Replicas of Read Replicas _(inception)_ - mindful of latency
+- You can have Read Replicas of Read Replicas _(involves higher latency)_
 - Each Read Replica will have its own DNS end point.
 - You can have Read Replicas that have Multi-AZ
 - You can create Read Replicas of Mulit-AZ source databases
@@ -171,3 +171,47 @@ Read replicas allow you to have a read-only copy of your production database. Th
 - PostgreSQL
 - MariaDB
 - Aurora
+- Oracle
+
+> For the MySQL, MariaDB, PostgreSQL, and Oracle database engines, Amazon RDS creates a second DB instance using a snapshot of the source DB instance. It then uses the engines' native asynchronous replication to update the read replica whenever there is a change to the source DB instance. The read replica operates as a DB instance that allows only read-only connections; applications can connect to a read replica just as they would to any DB instance. Amazon RDS replicates all databases in the source DB instance.
+
+> Amazon Aurora employs an SSD-backed virtualized storage layer purpose-built for database workloads. Amazon Aurora replicas share the same underlying storage as the source instance, lowering costs and avoiding the need to copy data to the replica nodes.
+
+[Amazon RDS Read Replica](https://aws.amazon.com/rds/details/read-replicas/)
+
+## Aurora
+
+### What is Aurora?
+
+Aurora is a MySQL-compatible,relational database engine that combines the speed and availability of high-end commercial databases with the simplicity and cost effectiveness of open source databases. Aurora provides up to 5x better performance than MySQL at a price point of 1/10 that of a commercial database while delivering similar performance and availability
+
+### Scaling
+
+- Start with 10G, Scales in 10G increments to 64 TB (Storage Autoscaling)
+- Compute resource can scale up to 32vCPUs and 244G of Memory.
+- 2 copies of your data is contained in each availability zone, with minimum of 3 AZ -> 6 copies of your data! Highly redundant
+- Designed to transparently handle the loss of up to 2 copies of data without affecting database write availability and up to 3 copies without affecting read availability.
+- Aurora storage is also self-healing. Data blocks and disks are continuously scanned for errors and repaird automatically.
+- You can share Aurora snapshots with other AWS account
+- Aurora has automated backup turned on by default. You can also create snapshot of Aurora DB
+
+
+
+### Aurora Replicas
+
+- 2 Types of Replicas are available
+- Aurora Replicas - Up to 15 replicas currently
+- MySQL Replicas - Up to 5 replicas currently
+- Automated fail-over is only available on Aurora replicas
+
+## Migration of an existing MySQL database to Aurora database
+
+1. Create an Aurora replica from the existing MySQL db instance and promoting it _(the write node in the cluster)_
+2. Or by creating a snapshot of the existing MySQL DB instance and restore it as Aurora DB
+
+# Exam Tips
+You will be given a scenario where a particular database is under a lot of stress/load. You may be asked which service you should use to alleviate this.
+
+ElastiCache is a good choice if your database is particularly read heavy and not prone to frequent changing.
+
+Redshift is a good answer if the reason your database is feeling stress is because management keep running OLAP transactions on it etc.
