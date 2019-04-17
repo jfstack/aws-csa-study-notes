@@ -179,11 +179,11 @@ Read replicas allow you to have a read-only copy of your production database. Th
 
 [Amazon RDS Read Replica](https://aws.amazon.com/rds/details/read-replicas/)
 
-## Aurora
+## Amazon Aurora
 
 ### What is Aurora?
 
-Aurora is a MySQL-compatible,relational database engine that combines the speed and availability of high-end commercial databases with the simplicity and cost effectiveness of open source databases. Aurora provides up to 5x better performance than MySQL at a price point of 1/10 that of a commercial database while delivering similar performance and availability
+Aurora is a MySQL-and PostgreSQL-compatible,relational database engine that combines the speed and availability of high-end commercial databases with the simplicity and cost effectiveness of open source databases. Aurora provides up to 5x better performance than MySQL at a price point of 1/10 that of a commercial database while delivering similar performance and availability
 
 ### Scaling
 
@@ -209,9 +209,18 @@ Aurora is a MySQL-compatible,relational database engine that combines the speed 
 1. Create an Aurora replica from the existing MySQL db instance and promoting it _(the write node in the cluster)_
 2. Or by creating a snapshot of the existing MySQL DB instance and restore it as Aurora DB
 
+# Amazon Athena
+- Interactive query service
+- Makes easy to analyze data in Amazon S3 using standard ANSI SQL to quickly analyze large-scale dataset.
+- There is no need for a complex ETL(Extract-Transform-Load) jobs to prepare data analysis
+- Serverless, no infrastructure to manage
+- Pay only for the queries to run
+
+
 # Exam Tips
 You will be given a scenario where a particular database is under a lot of stress/load. You may be asked which service you should use to alleviate this.
 
 ElastiCache is a good choice if your database is particularly read heavy and not prone to frequent changing.
 
 Redshift is a good answer if the reason your database is feeling stress is because management keep running OLAP transactions on it etc.
+
