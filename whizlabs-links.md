@@ -1,0 +1,4 @@
+- What is [AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
+- What is [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+- [VPC Scenarios and Examples](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario1.html)
+- What's [Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html)
